@@ -180,6 +180,145 @@ body{
   max-width: 90%;
   white-space: normal;
 }
+
+/* Envelope and letter styling on final page */
+.envelope-wrapper {
+  margin: 18px auto 14px;
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+}
+.envelope-card {
+  background: #fff4df;
+  border: 2px dashed #91afd8;
+  border-radius: 20px;
+  padding: 16px 14px;
+  box-shadow: 0 8px 20px rgba(70, 107, 155, 0.15);
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+  position: relative;
+  text-align: center;
+}
+.envelope-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(70, 107, 155, 0.22);
+  background: #fff8eb;
+}
+.envelope-wrapper.is-open .envelope-card {
+  background: #eef5ff;
+  border-style: solid;
+  border-color: #79a2d6;
+}
+.envelope-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.envelope-seal {
+  font-size: 26px;
+  display: inline-block;
+  animation: seal-wiggle 3s ease-in-out infinite;
+}
+@keyframes seal-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+.envelope-title {
+  font: italic 700 19px/1.3 Georgia, serif;
+  color: #385b8d;
+}
+.envelope-caption {
+  font: 500 13px/1.45 system-ui;
+  color: #6182ad;
+  margin: 0 0 10px;
+}
+.envelope-hint-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: #ffe3eb;
+  border: 1px dashed #e69bad;
+  border-radius: 999px;
+  font: 700 12px system-ui;
+  color: #c94464;
+  letter-spacing: .3px;
+  box-shadow: 0 2px 6px rgba(230, 155, 173, 0.3);
+}
+.envelope-letter {
+  display: none;
+  margin-top: 14px;
+  animation: letter-unfold .4s ease-out forwards;
+}
+.envelope-wrapper.is-open .envelope-letter {
+  display: block;
+}
+@keyframes letter-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.letter-paper {
+  background: #fffdf8;
+  border: 2px dashed #e8b6c3;
+  border-radius: 22px;
+  padding: 22px 18px 16px;
+  box-shadow: 0 10px 28px rgba(70, 107, 155, 0.16);
+  text-align: left;
+  position: relative;
+  background-image: radial-gradient(#f0e4d3 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.letter-top-decor {
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+}
+.letter-paper h2.letter-heading {
+  font: italic 700 20px/1.35 Georgia, serif;
+  color: #d94f68;
+  margin: 0 0 14px;
+  text-align: center;
+}
+.letter-paper p {
+  font: 14px/1.7 Georgia, serif;
+  color: #2e4668;
+  margin: 0 0 14px;
+}
+.letter-paper p:last-of-type {
+  margin-bottom: 0;
+}
+.letter-paper .letter-signoff {
+  font: italic 700 16px/1.4 Georgia, serif;
+  color: #d94f68;
+  text-align: right;
+  margin-top: 14px;
+}
+.letter-close-btn {
+  display: block;
+  margin: 16px auto 0;
+  border: 1px dashed #91afd8;
+  border-radius: 999px;
+  background: #fff4df;
+  color: #385b8d;
+  padding: 8px 18px;
+  font: 700 12px system-ui;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(70, 107, 155, 0.15);
+  transition: background .2s, transform .2s;
+}
+.letter-close-btn:hover {
+  background: #eef5ff;
+  transform: translateY(-1px);
+}
+
 </style>
 </head>
 <body>
@@ -264,9 +403,39 @@ body{
     <div class="extra-inner">
       <div class="extra-kicker">ONE LAST THING...</div>
       <div class="extra-sticker">💗 ✧ 🎂</div>
-      <h1>For you, Abhi ♡</h1>
-      <img class="final-img" src="puchuu_final.jpg">
+      <h1>Lots of love puchuu ♡</h1>
+      <img class="final-img" src="puchuu_final.jpg" alt="Puchuu">
+      <p class="final-love-note">lots of love puchuu ♡</p>
       <p class="extra-foot">forever and always 💙</p>
+
+      <!-- Envelope with special note for Puchuu -->
+      <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope-card" id="envelopeCard" onclick="toggleEnvelope()" role="button" tabindex="0" aria-expanded="false" aria-label="Open special envelope for Puchuu">
+          <div class="envelope-header">
+            <span class="envelope-seal">💌</span>
+            <span class="envelope-title">A special letter for Puchuu</span>
+            <span class="envelope-seal">🎀</span>
+          </div>
+          <p class="envelope-caption">Tap to open the envelope and read your letter ♡</p>
+          <span class="envelope-hint-badge" id="envelopeHintBadge">✉ Open Envelope</span>
+        </div>
+
+        <div class="envelope-letter" id="envelopeLetter">
+          <div class="letter-paper">
+            <div class="letter-top-decor">🎀 ✧ 💌 ✧ 💗</div>
+            <h2 class="letter-heading">To my little Puchuuu, 🎀💗</h2>
+            <div class="letter-body">
+              <p>Always be brave, my little one. Never be afraid to dream big, make mistakes, try new things or stand up for yourself. Life may not always go your way, but never forget how strong and special you are.</p>
+              <p>And whenever things get difficult, remember that you have me. You can always run to me with your happy stories, silly thoughts, tears or biggest worries. I'll always listen, support you and stand by your side, no matter what.</p>
+              <p>Grow, shine, make mistakes, laugh loudly and never lose your little spark!</p>
+              <p>No matter how big you grow, you'll always be my little Puchuuu. And I'll always be your biggest supporter.</p>
+              <p class="letter-signoff">Love you endlessly! 💗</p>
+            </div>
+            <button class="letter-close-btn" type="button" onclick="event.stopPropagation(); toggleEnvelope();">Close envelope ↺</button>
+          </div>
+        </div>
+      </div>
+
       <button class="page-next" onclick="showPage('welcome')">Back to the birthday beginning ↺</button>
     </div>
   </section>
@@ -430,6 +599,30 @@ function showOpenWhen(which){
  document.querySelector("#openWhenNote p").textContent=note.text;
 }
 
+
+
+function toggleEnvelope(){
+  const wrap = document.getElementById("envelopeWrapper");
+  if (!wrap) return;
+  const wasOpen = wrap.classList.contains("is-open");
+  wrap.classList.toggle("is-open");
+  const badge = document.getElementById("envelopeHintBadge");
+  const card = document.getElementById("envelopeCard");
+  if (card) {
+    card.setAttribute("aria-expanded", String(!wasOpen));
+  }
+  if (badge) {
+    badge.textContent = wasOpen ? "✉ Open Envelope" : "↺ Fold Envelope";
+  }
+  if (!wasOpen) {
+    setTimeout(() => {
+      const letter = document.getElementById("envelopeLetter");
+      if (letter) {
+        letter.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }, 120);
+  }
+}
 
 </script>
 </body>
