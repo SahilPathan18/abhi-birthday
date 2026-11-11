@@ -168,7 +168,18 @@ body{
 .final-img{width:min(92%,380px);border-radius:22px;border:5px solid #fff;box-shadow:0 10px 28px #456a9920;margin:18px auto 10px;display:block}
 #finalPage{display:none;position:relative;overflow-y:auto;padding-bottom:20px}
 #finalPage.active{display:block}
-#finalPage .page-next{position:relative;bottom:auto;left:auto;transform:none;display:block;margin:18px auto 24px;text-align:center;width:fit-content}
+.scrapbook-extra .page-next {
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  transform: none !important;
+  display: block !important;
+  margin: 22px auto 16px !important;
+  text-align: center;
+  width: fit-content;
+  max-width: 90%;
+  white-space: normal;
+}
 </style>
 </head>
 <body>
@@ -221,8 +232,8 @@ body{
         <button class="action quiz-next" id="quizNext" onclick="nextQuizQuestion()" disabled>Next question →</button>
       </div>
       <p class="extra-foot">No pressure — this is just for fun! 🎀</p>
+      <button class="page-next" onclick="showPage('openWhen')">Next: little letters →</button>
     </div>
-    <button class="page-next" onclick="showPage('openWhen')">Next: little letters →</button>
   </section>
 
   <section class="screen scrapbook-extra" id="openWhen" aria-label="Open when letters">
@@ -244,8 +255,8 @@ body{
         <p>Tap one of the envelopes above, Abhi ♡</p>
       </div>
       <p class="extra-foot">Even from far away, I'm always in your corner. 💙</p>
+      <button class="page-next" onclick="showPage('finalPage')">One more thing ♡ ↺</button>
     </div>
-    <button class="page-next" onclick="showPage('finalPage')">One more thing ♡ ↺</button>
   </section>
 
   <section class="screen scrapbook-extra" id="finalPage" aria-label="Final love note">
@@ -256,8 +267,8 @@ body{
       <h1>For you, Abhi ♡</h1>
       <img class="final-img" src="puchuu_final.jpg">
       <p class="extra-foot">forever and always 💙</p>
+      <button class="page-next" onclick="showPage('welcome')">Back to the birthday beginning ↺</button>
     </div>
-    <button class="page-next" onclick="showPage('welcome')">Back to the birthday beginning ↺</button>
   </section>
 
 
